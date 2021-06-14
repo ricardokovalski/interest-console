@@ -22,22 +22,25 @@ final class CalculateCommand extends Command
             ->addArgument(
                 'typeInterest',
                 InputArgument::REQUIRED,
-                'Supported type Financial, Compound and Simple.'
+                'Supported type Financial, Compound and Simple.',
+                Types::FINANCIAL
             )
             ->addArgument(
                 'interestValue',
                 InputArgument::REQUIRED,
-                'Supported type float. Ex.: "0.07", "2.75", "5.06".'
+                'Supported type float. Ex.: 0.07, 2.75, 5.06.',
+                0.00
             )
             ->addArgument(
                 'total',
                 InputArgument::REQUIRED,
-                'Supported type float. Ex.: "56.09", "349.90", "1000.78".'
+                'Supported type float. Ex.: 56.09, 349.90, 1000.78.',
+                0.00
             )
             ->addArgument(
                 'numberInstallment',
                 InputArgument::OPTIONAL,
-                'Supported type int.',
+                'Supported type int. Ex.: 1, 2, 3, ...',
                 1
             );
     }
