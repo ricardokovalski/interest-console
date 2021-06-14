@@ -8,7 +8,7 @@ use ErrorException;
  * Class ErrorHandler
  * @package RicardoKovalski\Interest\Console\Util
  */
-class ErrorHandler
+final class ErrorHandler
 {
     /**
      * @param $level

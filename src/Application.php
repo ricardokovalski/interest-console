@@ -9,7 +9,7 @@ use Symfony\Component\Console\Application as BaseApplication;
  * Class Application
  * @package RicardoKovalski\Interest\Console
  */
-class Application extends BaseApplication
+final class Application extends BaseApplication
 {
     /**
      * Application constructor.
