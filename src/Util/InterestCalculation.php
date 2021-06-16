@@ -31,6 +31,14 @@ final class InterestCalculation
     }
 
     /**
+     * @return Interest
+     */
+    public function getInterest()
+    {
+        return $this->interest;
+    }
+
+    /**
      * @param $installmentNumber
      * @return mixed
      */
@@ -48,6 +56,6 @@ final class InterestCalculation
     {
         $concreteClassInterest = "RicardoKovalski\\InterestCalculation\\Types\\{$method}";
 
-        return new self(new $concreteClassInterest(current($arguments)?:0.00));
+        return new InterestCalculation(new $concreteClassInterest(current($arguments)?:0.00));
     }
 }

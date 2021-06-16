@@ -22,18 +22,17 @@ final class CalculateCommand extends Command
             ->addArgument(
                 'typeInterest',
                 InputArgument::REQUIRED,
-                'Supported type Financial, Compound and Simple.',
-                Types::FINANCIAL
+                'Supported type Financial, Compound and Simple.'
             )
             ->addArgument(
                 'interestValue',
-                InputArgument::REQUIRED,
+                InputArgument::OPTIONAL,
                 'Supported type float. Ex.: 0.07, 2.75, 5.06.',
                 0.00
             )
             ->addArgument(
                 'total',
-                InputArgument::REQUIRED,
+                InputArgument::OPTIONAL,
                 'Supported type float. Ex.: 56.09, 349.90, 1000.78.',
                 0.00
             )
@@ -74,7 +73,7 @@ final class CalculateCommand extends Command
 
         $numberInstallment = filter_var(
             $input->getArgument('numberInstallment'),
-            FILTER_VALIDATE_FLOAT,
+            FILTER_VALIDATE_INT,
             array(
                 'default' => 1
             )
@@ -91,8 +90,7 @@ final class CalculateCommand extends Command
     protected function calculateInterest($typeInterest, $interestValue, $total, $numberInstallment)
     {
         $interest = InterestCalculation::$typeInterest($interestValue);
-
-        $interest->appendTotalCapital($total);
+        $interest->getInterest()->appendTotalCapital($total);
 
         return $interest->getInterestByInstallmentNumber($numberInstallment);
     }
