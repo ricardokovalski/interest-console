@@ -8,7 +8,6 @@ use RicardoKovalski\Interest\Console\Util\Types;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class CalculateCommand extends Command
@@ -55,33 +54,14 @@ final class CalculateCommand extends Command
             throw new Exception('Invalid type interest. Supported "Compound", "Financial" and "Simple".');
         }
 
-        $interestValue = filter_var(
-            $input->getArgument('interestValue'),
-            FILTER_VALIDATE_FLOAT,
-            array(
-                'default' => 0.00
-            )
-        );
+        $interestValue = filter_var($input->getArgument('interestValue'), FILTER_VALIDATE_FLOAT);
+        $total = filter_var($input->getArgument('total'), FILTER_VALIDATE_FLOAT);
+        $numberInstallment = filter_var($input->getArgument('numberInstallment'), FILTER_VALIDATE_INT);
 
-        $total = filter_var(
-            $input->getArgument('total'),
-            FILTER_VALIDATE_FLOAT,
-            array(
-                'default' => 0.00
-            )
-        );
+        $interest = InterestCalculation::$typeInterest($interestValue);
+        $interest->getInterest()->appendTotalCapital($total);
 
-        $numberInstallment = filter_var(
-            $input->getArgument('numberInstallment'),
-            FILTER_VALIDATE_INT,
-            array(
-                'default' => 1
-            )
-        );
-
-        $valueCalculated = $this->calculateInterest($typeInterest, $interestValue, $total, $numberInstallment);
-
-        $output->writeln($valueCalculated);
+        $output->writeln($interest->getInterestByInstallmentNumber($numberInstallment));
     }
 
     /**
