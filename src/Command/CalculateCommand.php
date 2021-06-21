@@ -8,6 +8,7 @@ use RicardoKovalski\Interest\Console\Util\Types;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class CalculateCommand extends Command
@@ -40,6 +41,12 @@ final class CalculateCommand extends Command
                 InputArgument::OPTIONAL,
                 'Supported type int. Ex.: 1, 2, 3, ...',
                 1
+            )
+            ->addOption(
+                'reverse',
+                'r',
+                InputOption::VALUE_NONE,
+                'Calculate reverse interest.'
             );
     }
 
@@ -58,14 +65,20 @@ final class CalculateCommand extends Command
         $total = filter_var($input->getArgument('total'), FILTER_VALIDATE_FLOAT);
         $numberInstallment = filter_var($input->getArgument('numberInstallment'), FILTER_VALIDATE_INT);
 
-        $interest = InterestCalculation::$typeInterest($interestValue);
-        $interest->getInterest()->appendTotalCapital($total);
+        if (((bool) $input->getOption('reverse')) === true) {
+            $output->writeln($this->calculateReverseInterest($typeInterest, $interestValue, $total, $numberInstallment));
+            return;
+        }
 
-        $output->writeln($interest->getInterestByInstallmentNumber($numberInstallment));
+        $output->writeln($this->calculateInterest($typeInterest, $interestValue, $total, $numberInstallment));
     }
 
     /**
-     * @throws Exception
+     * @param $typeInterest
+     * @param $interestValue
+     * @param $total
+     * @param $numberInstallment
+     * @return mixed
      */
     protected function calculateInterest($typeInterest, $interestValue, $total, $numberInstallment)
     {
@@ -73,5 +86,20 @@ final class CalculateCommand extends Command
         $interest->getInterest()->appendTotalCapital($total);
 
         return $interest->getInterestByInstallmentNumber($numberInstallment);
+    }
+
+    /**
+     * @param $typeInterest
+     * @param $interestValue
+     * @param $total
+     * @param $numberInstallment
+     * @return mixed
+     */
+    protected function calculateReverseInterest($typeInterest, $interestValue, $total, $numberInstallment)
+    {
+        $interest = InterestCalculation::$typeInterest($interestValue);
+        $interest->getInterest()->appendTotalCapital($total);
+
+        return $interest->getReverseInterestByNumberInstallments($numberInstallment);
     }
 }

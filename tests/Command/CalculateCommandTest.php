@@ -117,4 +117,29 @@ class CalculateCommandTest extends TestCase
         $this->assertCount(1, $output->messages);
         $this->assertEquals(366.71513681364, $output->messages[0]);
     }
+
+    public function testCommandOptionReverse()
+    {
+        $command = new CalculateCommand();
+
+        $input = new StringInput('Financial 2.99 350.90 2 -r');
+
+        $input->bind($command->getDefinition());
+
+        $output = new TestOutput();
+
+        $this->execute->invoke($command, $input, $output);
+        $this->assertCount(1, $output->messages);
+        $this->assertEquals(15.133085468258, $output->messages[0]);
+
+        $input = new StringInput('Financial 1.99 250.68 4 --reverse');
+
+        $input->bind($command->getDefinition());
+
+        $output = new TestOutput();
+
+        $this->execute->invoke($command, $input, $output);
+        $this->assertCount(1, $output->messages);
+        $this->assertEquals(11.99172236334, $output->messages[0]);
+    }
 }
