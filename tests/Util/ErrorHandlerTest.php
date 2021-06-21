@@ -9,7 +9,7 @@ class ErrorHandlerTest extends TestCase
 {
     public function testRegister()
     {
-        $expected = array (
+        $expected = array(
             'RicardoKovalski\\Interest\\Console\\Util\\ErrorHandler',
             'handle',
         );

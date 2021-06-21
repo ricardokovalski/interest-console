@@ -51,7 +51,8 @@ final class InterestCalculation
      * @param $installmentNumber
      * @return mixed
      */
-    public function getReverseInterestByNumberInstallments($installmentNumber) {
+    public function getReverseInterestByNumberInstallments($installmentNumber)
+    {
         return $this->interest->getReverseInterestByNumberInstallments($installmentNumber);
     }
 
@@ -64,6 +65,6 @@ final class InterestCalculation
     {
         $concreteClassInterest = "RicardoKovalski\\InterestCalculation\\Types\\{$method}";
 
-        return new InterestCalculation(new $concreteClassInterest(current($arguments)?:0.00));
+        return new InterestCalculation(new $concreteClassInterest(current($arguments) ?: 0.00));
     }
 }
