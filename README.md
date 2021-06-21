@@ -13,17 +13,60 @@
     <a href="https://github.com/ricardokovalski/interest-console/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="Read License"></a>
 </p>
 
-## Sobre
+<h1>Sobre</h1>
 
 ricardokovalski/interest-console é uma aplicação PHP que serve para calcular juros utilizando a biblioteca ricardokovalski/interest-calculation.
 
-## Instalação
+<h1>Instalação</h1>
 
 Instale este pacote como uma dependência usando [Composer](https://getcomposer.org).
 
 ```bash
 composer require ricardokovalski/interest-console
 ```
+
+<h1>Exemplos</h1>
+
+Se instalado em sua aplicação, você pode executar o aplicativo de console a partir da linha de comando:
+
+```bash
+$ ./vendor/bin/interest
+```
+
+Se instalado globalmente usando o Composer, certifique-se de que a instalação global do Composer esteja em seu PATH(geralmente é em algum lugar ~/.composer/vendor/bin). Então, você pode executá-lo:
+
+```bash
+$ interest
+```
+
+Esteja ciente de que alguns sistemas podem já ter um aplicativo de linha de comando chamado interest instalado, portanto, isso pode criar um conflito se algo usando seu PATH esperar a outra interest ferramenta.
+
+Veja a seguir a estrutura de argumentos para o comando.
+
+```bash
+$ ./vendor/bin/interest calculate {first argument} {second argument} {third argument} {fourteen argument} onde:
+```
+
+First argument é o tipo de juros que queremos calcular. Atualmente suportamos Financial (Financiamento), Compound (Composto) e Simple (Simples).
+Second argument é juros do tipo float. Ex.: 1.99, 2.75, e assim por diante.
+Third argument é o total da compra a ser calculado. Tipo float. Ex.: 50.76, 345.08, 1000.45, e assim por diante.
+Fourteen argument é a parcela que queremos calcular. Tipo int.
+
+Então vejamos um exemplo abaixo. Para calcular o juros de financiamento com uma taxa de 2.99 e uma compra de 350.90 na segunda parcela:
+
+```bash
+$ ./vendor/bin/interest calculate Financial 2.99 350.90 2
+// 366.71513681364
+``` 
+
+A opção -r ou --reverse indica que podemos obter o valor do juros reverso.
+
+```bash
+$ ./vendor/bin/interest calculate Financial 2.99 350.90 2 -r
+// 15.133085468258
+```
+
+Para obter ajuda, basta digitar ./vendor/bin/interest e ler as informações de ajuda.
 
 ## Copyright and License
 
