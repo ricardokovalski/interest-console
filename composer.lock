@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af2cc65ce9b578741253d5e8469dd2ca",
+    "content-hash": "7b68bfdcb2f109f81df9c3508b636103",
     "packages": [
         {
             "name": "psr/log",
@@ -58,16 +58,16 @@
         },
         {
             "name": "ricardokovalski/interest-calculation",
-            "version": "v1.0.2-alpha",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ricardokovalski/interest-calculation.git",
-                "reference": "2a9104f68f9011f736dae07dfda731b9e61d08ac"
+                "reference": "d512bfea78ccf104fbd76bea93a58b69f4b429dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ricardokovalski/interest-calculation/zipball/2a9104f68f9011f736dae07dfda731b9e61d08ac",
-                "reference": "2a9104f68f9011f736dae07dfda731b9e61d08ac",
+                "url": "https://api.github.com/repos/ricardokovalski/interest-calculation/zipball/d512bfea78ccf104fbd76bea93a58b69f4b429dc",
+                "reference": "d512bfea78ccf104fbd76bea93a58b69f4b429dc",
                 "shasum": ""
             },
             "require": {
@@ -103,7 +103,11 @@
                 "interest-calculation",
                 "interest-rates"
             ],
-            "time": "2021-06-04T21:47:35+00:00"
+            "support": {
+                "issues": "https://github.com/ricardokovalski/interest-calculation/issues",
+                "source": "https://github.com/ricardokovalski/interest-calculation/tree/v1.0.2"
+            },
+            "time": "2021-07-05T20:58:23+00:00"
         },
         {
             "name": "symfony/console",
@@ -2103,7 +2107,6 @@
                 "issues": "https://github.com/sebastianbergmann/resource-operations/issues",
                 "source": "https://github.com/sebastianbergmann/resource-operations/tree/master"
             },
-            "abandoned": true,
             "time": "2015-07-28T20:34:47+00:00"
         },
         {

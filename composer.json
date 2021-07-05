@@ -15,7 +15,7 @@
   "require": {
     "php": ">=5.6",
     "ext-json": "*",
-    "ricardokovalski/interest-calculation": "v1.0.2-alpha",
+    "ricardokovalski/interest-calculation": "v1.0.2",
     "symfony/console": "^3.4"
   },
   "require-dev": {
